@@ -3,6 +3,8 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const cron = require("node-cron");
+
 require("dotenv").config();
 
 const app = express();
@@ -65,6 +67,9 @@ app.post("/send-email", async (req, res) => {
 });
 
 const PORT = 2700;
+cron.schedule("*/10 * * * * *", () => {
+  console.log("hey");
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
